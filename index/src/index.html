@@ -12,8 +12,9 @@
   <section id="slide1" class="active">
     <button id="start" onclick="StartGame()">Start Game</button>
     <input id="Nama" placeholder="Player Name">
-    <button id="startNow" onclick="StartGameNow()">Start Now</button>
+    <a href="#2"><button id="startNow" onclick="StartGameNow()">Start Now</button></a>
     <script>
+      var namaPemain
       function StartGame(){
         document.getElementById("start").style.visibility='hidden'
         document.getElementById("start").style.display='none'
@@ -21,15 +22,62 @@
         document.getElementById("startNow").style.visibility='visible'
       }
       function StartGameNow(){
-        
+        namaPemain = document.getElementById("Nama").value //menyimpan nama yang dimasukkan pemain
+        document.getElementById("start").style.visibility='visible'
+        document.getElementById("start").style.display='block'
+        document.getElementById("Nama").style.visibility='hidden'
+        document.getElementById("startNow").style.visibility='hidden'
+        document.getElementById("kalah").style.visibility='hidden' //ini cuma sementara
+        startTimer()
       }
     </script>
   </section>
 
   <section class="active" id="slide2">
+    <a href="#1"><button id="kalah">Back to menu</button></a>
     <div class="timelimit">
       30
     </div>
+    <script>
+        var timer
+        
+        //untuk mereset tampilan timernya
+        function resetTimer(){
+          var timelimit = document.getElementsByClassName("timelimit")
+          for(var i=0; i<timelimit.length; i++){
+              timelimit[i].innerHTML = "30"
+            }
+        }
+
+        //Memulai menghitung mundur timer dari 30
+        function startTimer(){
+          resetTimer()
+          var timelimit = document.getElementsByClassName("timelimit")
+          timer = setInterval(() => {
+            for(var i=0; i<timelimit.length; i++){
+              time = timelimit[i].innerHTML
+              time--
+              if(time<0){
+                timelimit[i].innerHTML = "0"
+              }
+              else{
+              timelimit[i].innerHTML = time 
+              }
+                
+            }
+          if(time <0){
+              alert("Waktu habis! anda yang bernama "+namaPemain+" tidak menang")//ini sementara untuk pengganti game over
+              clearInterval(timer)
+              document.getElementById("kalah").style.visibility='visible'//ini sementara
+            }
+          }, 1000);        
+        }
+
+        //supaya timernya berhenti ditempat
+        function stopTimer(){
+          clearInterval(timer)
+        }  
+      </script>
     <div>
       <div class="pertanyaan">
       </div>
