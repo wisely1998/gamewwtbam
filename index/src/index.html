@@ -9,13 +9,37 @@
 <body>
 <article class="deck">
 
-  <section>
-    <h1>Hello World</h1>
+  <section id="slide1" class="active">
+    <button id="start" onclick="StartGame()">Start Game</button>
+    <input id="Nama" placeholder="Player Name">
+    <button id="startNow" onclick="StartGameNow()">Start Now</button>
+    <script>
+      function StartGame(){
+        document.getElementById("start").style.visibility='hidden'
+        document.getElementById("start").style.display='none'
+        document.getElementById("Nama").style.visibility='visible'
+        document.getElementById("startNow").style.visibility='visible'
+      }
+      function StartGameNow(){
+        
+      }
+    </script>
   </section>
 
-  <section>
-    <h2>Images</h2>
-    <img src="images/bespoke-logo.jpg">
+  <section class="active" id="slide2">
+    <div class="timelimit">
+      20
+    </div>
+    <div>
+      <div class="pertanyaan">
+      </div>
+      <div class="tempJawaban">
+        <div class="jawaban1"></div>
+        <div class="jawaban2"></div>
+        <div class="jawaban3"></div>
+        <div class="jawaban4"></div>
+      </div>
+    </div>
   </section>
 
   <section>
