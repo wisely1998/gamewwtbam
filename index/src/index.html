@@ -12,7 +12,7 @@
   <section id="slide1" class="active">
     <button id="start" onclick="StartGame()">Start Game</button>
     <input id="Nama" placeholder="Player Name">
-    <a href="#2"><button id="startNow" onclick="StartGameNow()">Start Now</button></a>
+    <button id="startNow" onclick="StartGameNow()">Start Now</button>
     <script>
       var namaPemain
       function StartGame(){
@@ -27,20 +27,30 @@
         document.getElementById("start").style.display='block'
         document.getElementById("Nama").style.visibility='hidden'
         document.getElementById("startNow").style.visibility='hidden'
-        document.getElementById("kalah").style.visibility='hidden' //ini cuma sementara
+        location.href = "#3"
         startTimer()
       }
     </script>
   </section>
 
-  <section class="active" id="slide2">
+  <section>
+    <div id="EndMsg" class="pertanyaan"></div>
     <a href="#1"><button id="kalah">Back to menu</button></a>
+  </section>
+
+  <section class="active" id="slide2">
     <div class="timelimit">
       30
     </div>
     <script>
-        var timer
-        
+        var timernya
+
+        function EndGame(){
+          document.getElementById("EndMsg").innerHTML = "Player "+namaPemain+" tidak memenangkan hadiah apapun"
+          document.getElementById("EndMsg").style.textAlign = "center"
+          location.href = "#2"
+        }
+
         //untuk mereset tampilan timernya
         function resetTimer(){
           var timelimit = document.getElementsByClassName("timelimit")
@@ -66,9 +76,8 @@
                 
             }
           if(time <0){
-              alert("Waktu habis! anda yang bernama "+namaPemain+" tidak menang")//ini sementara untuk pengganti game over
+              EndGame()//ini sementara untuk pengganti game over
               clearInterval(timer)
-              document.getElementById("kalah").style.visibility='visible'//ini sementara
             }
           }, 1000);        
         }
