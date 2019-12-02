@@ -3,10 +3,15 @@
 // New to Stylus? Check out http://learnboost.github.io/stylus
 // You can use modern CSS thanks to Autoprefixer: https://github.com/ai/autoprefixer
 
+.deck{
+    background :  url('/images/backbody.jpg') no-repeat fixed;
+    background-size : cover;
+}
 section{
     background :  url('/images/background.jpeg');
     background-repeat : no-repeat;
 }
+
 #Nama{
     width 200px
     height auto
@@ -40,6 +45,10 @@ section{
     background :  url('/images/pertanyaan.png');
     background-repeat : no-repeat;
     margin-top 15px
+    line-height 64px
+    text-align center
+    color white
+    font-size 14px
 }
 .tempJawab{
     width 640px
@@ -90,6 +99,13 @@ section{
     width 284px
     height 44px
     background :  url('/images/jawabanNentral.png');
+    line-height 44px
+    text-align center
+    color white
+    font-size 14px
+}
+.jawabanN:hover{
+    background :  url('/images/jawabanhold.png');
 }
 .jawabanT{
     width 284px
@@ -101,10 +117,6 @@ section{
     height 44px
     background :  url('/images/jawabanFalse.png');
 }
-.deck{
-    background #555
-    }
-
 #start{
     width 288px
     height 66px
