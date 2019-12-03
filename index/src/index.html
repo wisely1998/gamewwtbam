@@ -27,6 +27,11 @@
         document.getElementById("start").style.display='block'
         document.getElementById("Nama").style.visibility='hidden'
         document.getElementById("startNow").style.visibility='hidden'
+        var fifty = document.getElementsByClassName("fifty")
+        for (var i = 0; i<fifty.length; i++){
+          fifty[i].style.visibility = "visible"
+        }
+        resetJawaban()
         location.href = "#3"
         startTimer()
       }
@@ -39,6 +44,7 @@
   </section>
 
   <section class="active" id="slide2">
+    <button class = "fifty" onclick="fifty()">50:50</button>
     <div class="timelimit">
       30
     </div>
@@ -48,6 +54,7 @@
         function EndGame(){
           document.getElementById("EndMsg").innerHTML = "Player "+namaPemain+" tidak memenangkan hadiah apapun"
           document.getElementById("EndMsg").style.textAlign = "center"
+          stopTimer()
           location.href = "#2"
         }
 
@@ -77,7 +84,7 @@
             }
           if(time <0){
               EndGame()//ini sementara untuk pengganti game over
-              clearInterval(timer)
+              
             }
           }, 1000);        
         }
@@ -94,30 +101,84 @@
         <div class="tempjawabanL">
             <div class="leftjawaban"></div>
             <div class="jawabantempOKR">
-              <div class="jawabanN">Swiss</div>
+              <div class="jawabanN benar" onclick="jawabanBenar(this)">Hungaria (benar)</div>
           </div>
         </div>
         <div class="tempjawabanR">
             <div class="rightjawaban"></div>
             <div class="jawabantempOKL">
-                <div class="jawabanN">Slovenia</div>
+                <div class="jawabanN salah" onclick="jawabanSalah(this)">Slovenia</div>
             </div>
         </div>
         <div class="tempjawabanL">
             <div class="leftjawaban"></div>
             <div class="jawabantempOKR">
-                <div class="jawabanN">Hungaria (benar)</div> 
+                <div class="jawabanN" onclick="jawabanSalah(this)">Swiss</div> 
             </div>
         </div>
         <div class="tempjawabanR">
             <div class="rightjawaban"></div>
             <div class="jawabantempOKL">
-                <div class="jawabanN">Liechtensein</div>
+                <div class="jawabanN salah" onclick="jawabanSalah(this)">Liechtensein</div>
             </div>
         </div>
       </div>
     </div>
   </section>
+  <script>
+      var clicked = 0
+      function resetJawaban(){
+        var opsi = document.getElementsByClassName("jawabanN")
+        for (var i = 0; i<opsi.length; i++){
+          opsi[i].style.visibility = "visible"
+          opsi[i].style.background = "url('images/jawabanNentral.png')"        
+        }
+        clicked = 0;
+      }
+      function nextQuestion(){
+          resetJawaban()
+          location.href = "#3"
+          startTimer()
+          
+      }
+      function jawabanBenar(jawaban){
+        if(clicked == 0){
+          clicked = 1
+          stopTimer()
+          jawaban.style.background = "url('images/jawabanTrue.png')"
+          setTimeout(() => {
+            nextQuestion()
+          }, 5000);
+        }
+      }
+        
+      function jawabanSalah(jawaban){
+        if(clicked == 0){
+          clicked = 1
+          stopTimer()
+          jawaban.style.background = "url('images/jawabanFalse.png')"
+          var benar = document.getElementsByClassName("benar")
+          for(var i = 0; i<benar.length; i++){
+            benar[i].style.background = "url('images/jawabanTrue.png')"
+          }
+          setTimeout(() => {
+            EndGame()
+          }, 5000);
+        }
+          
+      }
+      function fifty(){
+        var wrong = document.getElementsByClassName("salah")
+        for (var i = 0; i<wrong.length; i++){
+          wrong[i].style.visibility = "hidden"
+        }
+        var fifty = document.getElementsByClassName("fifty")
+        for (var i = 0; i<fifty.length; i++){
+          fifty[i].style.visibility = "hidden"
+        }
+      }
+
+  </script>
 </article>
 
 <script src="build/build.js"></script>
