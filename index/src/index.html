@@ -27,11 +27,14 @@
         document.getElementById("start").style.display='block'
         document.getElementById("Nama").style.visibility='hidden'
         document.getElementById("startNow").style.visibility='hidden'
+        rew = 0;
+        lokasi = 3;
         var fifty = document.getElementsByClassName("fifty")
         for (var i = 0; i<fifty.length; i++){
           fifty[i].style.visibility = "visible"
         }
         resetJawaban()
+        resetReward()
         location.href = "#3"
         startTimer()
       }
@@ -45,17 +48,18 @@
 
   <section class="active" id="slide2">
     <button class = "fifty" onclick="fifty()">50:50</button>
+    <button class = "claim" onclick="claim()">claim</button>
     <div class="grandprize">
-      <p class="textprize">$1.000.000</p>
-      <p class="textprize">$500.000</p>
-      <p class="textprize">$250.000</p>
-      <p class="textprize">$125.000</p>
-      <p class="textprize">$50.000</p>
-      <p class="textprize">$25.000</p>
-      <p class="textprize">$10.000</p>
-      <p class="textprize">$5.000</p>
-      <p class="textprize">$2.000</p>
-      <p class="textprize">$1.000</p>
+      <p class="textprize sepuluh">$1.000.000</p>
+      <p class="textprize sembilan">$500.000</p>
+      <p class="textprize delapan">$250.000</p>
+      <p class="textprize tujuh">$125.000</p>
+      <p class="textprize enam">$50.000</p>
+      <p class="textprize lima">$25.000</p>
+      <p class="textprize empat">$10.000</p>
+      <p class="textprize tiga">$5.000</p>
+      <p class="textprize dua">$2.000</p>
+      <p class="textprize satu">$1.000</p>
     </div>
     <div class="timelimit">
       30
@@ -64,10 +68,15 @@
         var timernya
 
         function EndGame(){
-          document.getElementById("EndMsg").innerHTML = "Player "+namaPemain+" tidak memenangkan hadiah apapun"
+          document.getElementById("EndMsg").innerHTML = "Player "+namaPemain+" mendapatkan hadiah "+uang
           document.getElementById("EndMsg").style.textAlign = "center"
           stopTimer()
           location.href = "#2"
+        }
+
+        function claim(){
+          uang = rew[0].innerHTML
+          EndGame()
         }
 
         //untuk mereset tampilan timernya
@@ -137,6 +146,7 @@
       </div>
     </div>
   </section>
+  <section></section>
   <script>
       var clicked = 0
       function resetJawaban(){
@@ -147,17 +157,29 @@
         }
         clicked = 0;
       }
+      function resetReward(){
+        var awal = document.getElementsByClassName("textprize")
+        for (var i = 0; i<awal.length; i++){
+          awal[i].style.background = "none"
+        }
+        reward = 0;
+      }
+      var lokasi = 3;
       function nextQuestion(){
           resetJawaban()
-          location.href = "#3"
+          lokasi++
+          location.href = "#"+lokasi
           startTimer()
-          
+          if(reward == 10){
+            EndGame()
+          }
       }
       function jawabanBenar(jawaban){
         if(clicked == 0){
           clicked = 1
           stopTimer()
           jawaban.style.background = "url('images/jawabanTrue.png')"
+          increaseReward()
           setTimeout(() => {
             nextQuestion()
           }, 5000);
@@ -188,6 +210,75 @@
         for (var i = 0; i<fifty.length; i++){
           fifty[i].style.visibility = "hidden"
         }
+      }
+      var uang = 0;
+      var reward = 0
+      var rew
+      function increaseReward(){
+        reward++
+        if(reward == 1){
+          rew= document.getElementsByClassName('satu')
+          for(var i = 0; i<rew.length; i++){
+            rew[i].style.background = "#00FF00"
+          }
+        }
+        else if(reward == 2){
+          rew= document.getElementsByClassName('dua')
+          for(var i = 0; i<rew.length; i++){
+            rew[i].style.background = "#00FF00"
+          }
+
+        }
+        else if(reward == 3){
+          rew= document.getElementsByClassName('tiga')
+          for(var i = 0; i<rew.length; i++){
+            rew[i].style.background = "#00FF00"
+          }
+        }
+        else if(reward == 4){
+          rew= document.getElementsByClassName('empat')
+          for(var i = 0; i<rew.length; i++){
+            rew[i].style.background = "#00FF00"
+          }
+        }
+        else if(reward == 5){
+          rew = document.getElementsByClassName('lima')
+          for(var i = 0; i<rew.length; i++){
+            rew[i].style.background = "#00FF00"
+          }
+          uang = rew[0].innerHTML
+        }
+        else if(reward == 6){
+          rew= document.getElementsByClassName('enam')
+          for(var i = 0; i<rew.length; i++){
+            rew[i].style.background = "#00FF00"
+          }
+        }
+        else if(reward == 7){
+          rew= document.getElementsByClassName('tujuh')
+          for(var i = 0; i<rew.length; i++){
+            rew[i].style.background = "#00FF00"
+          }
+        }
+        else if(reward == 8){
+          rew= document.getElementsByClassName('delapan')
+          for(var i = 0; i<rew.length; i++){
+            rew[i].style.background = "#00FF00"
+          }
+        }
+        else if(reward == 9){
+          rew= document.getElementsByClassName('sembilan')
+          for(var i = 0; i<rew.length; i++){
+            rew[i].style.background = "#00FF00"
+          }
+        }
+        else if(reward == 10){
+          rew= document.getElementsByClassName('sepuluh')
+          for(var i = 0; i<rew.length; i++){
+            rew[i].style.background = "#00FF00"
+          }
+        }
+        
       }
 
   </script>
