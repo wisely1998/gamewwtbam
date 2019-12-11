@@ -27,21 +27,20 @@
         document.getElementById("Nama").style.visibility='hidden'
         document.getElementById("startNow").style.visibility='hidden'
         rew = 0;
-        lokasi = 3;
         var fifty = document.getElementsByClassName("fifty")
         for (var i = 0; i<fifty.length; i++){
           fifty[i].style.visibility = "visible"
         }
+        sudah = []
         resetJawaban()
         resetReward()
-        location.href = "#3"
-        startTimer()
+        nextQuestion()
       }
     </script>
   </section>
 
   <section>
-    <div id="EndMsg" class="pertanyaan"></div>
+    <div id="EndMsg"></div>
     <a href="#1"><button id="kalah">Back to menu</button></a>
   </section>
 
@@ -517,7 +516,7 @@
   </section>
 
   <script>
-    var timernya
+    var timer
 
     function EndGame(){
       document.getElementById("EndMsg").innerHTML = "Player "+namaPemain+" mendapatkan hadiah "+uang
@@ -557,7 +556,6 @@
         }
       if(time <0){
           EndGame()//ini sementara untuk pengganti game over
-          
         }
       }, 1000);        
     }
@@ -583,13 +581,30 @@
         reward = 0;
       }
       var lokasi = 3;
+      var sudah = []
       function nextQuestion(){
           resetJawaban()
-          lokasi++
-          location.href = "#"+lokasi
-          startTimer()
+          var cek = 0
+          
+          
           if(reward == 10){
             EndGame()
+          }
+          else{
+            var salah = 1
+            var pertanyaan = document.getElementsByClassName("pertanyaan")
+            while(salah == 1){
+              salah = 0
+              var random = (Math.floor(Math.random()*10)%pertanyaan.length)+3
+              for (var i = 0; i<sudah.length; i++){
+                if(sudah[i]==random){
+                  salah = 1
+                }
+              }
+            }
+            sudah.push(random)
+            location.href = "#"+random
+            startTimer()
           }
       }
       function jawabanBenar(jawaban){
