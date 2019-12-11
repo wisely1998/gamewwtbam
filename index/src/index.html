@@ -7,10 +7,15 @@
   <link rel="stylesheet" type="text/css" href="build/build.css">
 </head>
 
+<<<<<<< HEAD
 <body onload="playTheme()">
 <audio id="maintheme" src="/images/maintheme.mp3"></audio>
 <audio id="maintheme2" src="/images/maintheme2.mp3"></audio>
 <audio id="quiz" src="/images/quiz.mp3" loop></audio>
+=======
+<body>
+<audio id="maintheme" src="/images/maintheme.mp3" loop></audio>
+>>>>>>> abf68ccbf0c0bf414fc44c85e6ce145b52499328
 <audio id="alert" src="/images/alert.mp3"></audio>
 <audio id="wow" src="/images/wow.mp3"></audio>
 <article class="deck">
@@ -42,6 +47,7 @@
         for (var i = 0; i<fifty.length; i++){
           fifty[i].style.visibility = "visible"
         }
+        playTheme()
         sudah = []
         resetJawaban()
         resetReward()
