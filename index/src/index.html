@@ -3,12 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>Hello World</title>
+  <title>Who want to be a millionaire</title>
   <link rel="stylesheet" type="text/css" href="build/build.css">
 </head>
 
+<<<<<<< HEAD
+<body onload="playTheme()">
+<audio id="maintheme" src="/images/maintheme.mp3"></audio>
+<audio id="maintheme2" src="/images/maintheme2.mp3"></audio>
+<audio id="quiz" src="/images/quiz.mp3" loop></audio>
+=======
 <body>
 <audio id="maintheme" src="/images/maintheme.mp3" loop></audio>
+>>>>>>> abf68ccbf0c0bf414fc44c85e6ce145b52499328
 <audio id="alert" src="/images/alert.mp3"></audio>
 <audio id="wow" src="/images/wow.mp3"></audio>
 <article class="deck">
@@ -20,6 +27,7 @@
       var namaPemain
       function playTheme(){
         document.getElementById("maintheme").play()
+        document.getElementById("maintheme2").play()
       }
       function StartGame(){
         document.getElementById("start").style.visibility='hidden'
@@ -28,6 +36,7 @@
         document.getElementById("startNow").style.visibility='visible'
       }
       function StartGameNow(){
+        document.getElementById("quiz").play()
         namaPemain = document.getElementById("Nama").value //menyimpan nama yang dimasukkan pemain
         document.getElementById("start").style.visibility='visible'
         document.getElementById("start").style.display='block'
@@ -522,6 +531,58 @@
       </div>
     </div>
   </section>
+  <section class="active" >
+    <div class="top">
+        <button class = "fifty" onclick="fifty()">50:50</button>
+        <button class = "claim" onclick="claim()">claim</button>
+    </div>
+    <div class="grandprize">
+    <p class="textprize sepuluh">$1.000.000</p>
+    <p class="textprize sembilan">$500.000</p>
+    <p class="textprize delapan">$250.000</p>
+    <p class="textprize tujuh">$125.000</p>
+    <p class="textprize enam">$50.000</p>
+    <p class="textprize lima">$25.000</p>
+    <p class="textprize empat">$10.000</p>
+    <p class="textprize tiga">$5.000</p>
+    <p class="textprize dua">$2.000</p>
+    <p class="textprize satu">$1.000</p>
+  </div>
+  <div class="timelimit">
+    30
+  </div>
+  
+  <div>
+    <div class="pertanyaan">Menteri pendidikan di indonesia saat ini..
+    </div>
+    <div class="tempJawab">
+      <div class="tempjawabanL">
+          <div class="leftjawaban"></div>
+          <div class="jawabantempOKR">
+            <div class="jawabanN salah" onclick="jawabanSalah(this)">Prabowo</div>
+        </div>
+      </div>
+      <div class="tempjawabanR">
+          <div class="rightjawaban"></div>
+          <div class="jawabantempOKL">
+              <div class="jawabanN" onclick="jawabanSalah(this)">Jokowi</div>
+          </div>
+      </div>
+      <div class="tempjawabanL">
+          <div class="leftjawaban"></div>
+          <div class="jawabantempOKR">
+              <div class="jawabanN salah" onclick="jawabanSalah(this)">Ahok</div> 
+          </div>
+      </div>
+      <div class="tempjawabanR">
+          <div class="rightjawaban"></div>
+          <div class="jawabantempOKL">
+              <div class="jawabanN benar" onclick="jawabanBenar(this)">Nadiem Makarim</div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
 
   <script>
     var timer
