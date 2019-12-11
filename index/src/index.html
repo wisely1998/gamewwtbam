@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Who want to be a millionaire</title>
+  <link rel="stylesheet" type="text/css" href="build/build.css">
+</head>
+
+<body onload="playTheme()">
+<audio id="maintheme" src="/images/maintheme.mp3"></audio>
+<audio id="maintheme2" src="/images/maintheme2.mp3"></audio>
+<audio id="quiz" src="/images/quiz.mp3" loop></audio>
+<audio id="alert" src="/images/alert.mp3"></audio>
+<audio id="wow" src="/images/wow.mp3"></audio>
+<article class="deck">
+  <section id="slide1" class="active">
+    <imagebutton id="start" onclick="StartGame()"></imagebutton>
+    <input id="Nama" placeholder="Player Name">
+    <button id="startNow" onclick="StartGameNow()">Start Now</button>
+    <script>
+      var namaPemain
+      function playTheme(){
+        document.getElementById("maintheme").play()
+        document.getElementById("maintheme2").play()
+      }
+      function StartGame(){
+        document.getElementById("start").style.visibility='hidden'
+        document.getElementById("start").style.display='none'
+        document.getElementById("Nama").style.visibility='visible'
+        document.getElementById("startNow").style.visibility='visible'
+      }
+      function StartGameNow(){
+        document.getElementById("quiz").play()
+        namaPemain = document.getElementById("Nama").value //menyimpan nama yang dimasukkan pemain
+        document.getElementById("start").style.visibility='visible'
+        document.getElementById("start").style.display='block'
+        document.getElementById("Nama").style.visibility='hidden'
+        document.getElementById("startNow").style.visibility='hidden'
+        rew = 0;
+        var fifty = document.getElementsByClassName("fifty")
+        for (var i = 0; i<fifty.length; i++){
+          fifty[i].style.visibility = "visible"
+        }
+        sudah = []
+        resetJawaban()
+        resetReward()
+        nextQuestion()
+      }
+    </script>
+  </section>
+
+  <section>
+    <div id="EndMsg"></div>
+    <a href="#1"><button id="kalah">Back to menu</button></a>
+  </section>
+
+  <section class="active">
+    <div class="top">
+      <button class = "fifty" onclick="fifty()">50:50</button>
+      <button class = "claim" onclick="claim()">claim</button>
+  </div>
+    <div class="grandprize">
+      <p class="textprize sepuluh">$1.000.000</p>
+      <p class="textprize sembilan">$500.000</p>
+      <p class="textprize delapan">$250.000</p>
+      <p class="textprize tujuh">$125.000</p>
+      <p class="textprize enam">$50.000</p>
+      <p class="textprize lima">$25.000</p>
+      <p class="textprize empat">$10.000</p>
+      <p class="textprize tiga">$5.000</p>
+      <p class="textprize dua">$2.000</p>
+      <p class="textprize satu">$1.000</p>
+    </div>
+    <div class="timelimit">
+      30
+    </div>
+    
+    <div>
+      <div class="pertanyaan">Berikut ini adalah negara yang dilalui oleh pegunungn alpen, kecuali
+      </div>
+      <div class="tempJawab">
+        <div class="tempjawabanL">
+            <div class="leftjawaban"></div>
+            <div class="jawabantempOKR">
+              <div class="jawabanN benar" onclick="jawabanBenar(this)">Hungaria</div>
+          </div>
+        </div>
+        <div class="tempjawabanR">
+            <div class="rightjawaban"></div>
+            <div class="jawabantempOKL">
+                <div class="jawabanN" onclick="jawabanSalah(this)">Slovenia</div>
+            </div>
+        </div>
+        <div class="tempjawabanL">
+            <div class="leftjawaban"></div>
+            <div class="jawabantempOKR">
+                <div class="jawabanN salah" onclick="jawabanSalah(this)">Swiss</div> 
+            </div>
+        </div>
+        <div class="tempjawabanR">
+            <div class="rightjawaban"></div>
+            <div class="jawabantempOKL">
+                <div class="jawabanN salah" onclick="jawabanSalah(this)">Liechtensein</div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="active">
+    <div class="top">
+      <button class = "fifty" onclick="fifty()">50:50</button>
+      <button class = "claim" onclick="claim()">claim</button>
+    </div>
+    <div class="grandprize">
+      <p class="textprize sepuluh">$1.000.000</p>
+      <p class="textprize sembilan">$500.000</p>
+      <p class="textprize delapan">$250.000</p>
+      <p class="textprize tujuh">$125.000</p>
+      <p class="textprize enam">$50.000</p>
+      <p class="textprize lima">$25.000</p>
+      <p class="textprize empat">$10.000</p>
+      <p class="textprize tiga">$5.000</p>
+      <p class="textprize dua">$2.000</p>
+      <p class="textprize satu">$1.000</p>
+    </div>
+    <div class="timelimit">
+      30
+    </div>
+    
+    <div>
+      <div class="pertanyaan">Pusat keuangan amerika serikut berada di..
+      </div>
+      <div class="tempJawab">
+        <div class="tempjawabanL">
+            <div class="leftjawaban"></div>
+            <div class="jawabantempOKR">
+              <div class="jawabanN salah" onclick="jawabanSalah(this)">Chicago</div>
+          </div>
+        </div>
+        <div class="tempjawabanR">
+            <div class="rightjawaban"></div>
+            <div class="jawabantempOKL">
+                <div class="jawabanN salah" onclick="jawabanSalah(this)">Washington DC</div>
+            </div>
+        </div>
+        <div class="tempjawabanL">
+            <div class="leftjawaban"></div>
+            <div class="jawabantempOKR">
+                <div class="jawabanN benar" onclick="jawabanBenar(this)">New York</div> 
+            </div>
+        </div>
+        <div class="tempjawabanR">
+            <div class="rightjawaban"></div>
+            <div class="jawabantempOKL">
+                <div class="jawabanN" onclick="jawabanSalah(this)">Los Angeles</div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="active">
+      <div class="top">
+          <button class = "fifty" onclick="fifty()">50:50</button>
+          <button class = "claim" onclick="claim()">claim</button>
+      </div>
+      <div class="grandprize">
+      <p class="textprize sepuluh">$1.000.000</p>
+      <p class="textprize sembilan">$500.000</p>
+      <p class="textprize delapan">$250.000</p>
+      <p class="textprize tujuh">$125.000</p>
+      <p class="textprize enam">$50.000</p>
+      <p class="textprize lima">$25.000</p>
+      <p class="textprize empat">$10.000</p>
+      <p class="textprize tiga">$5.000</p>
+      <p class="textprize dua">$2.000</p>
+      <p class="textprize satu">$1.000</p>
+    </div>
+    <div class="timelimit">
+      30
+    </div>
+    
+    <div>
+      <div class="pertanyaan">Kejuaraan World Cup dilaksanakan pertama kali tahun 1930 dimenangkan oleh..
+      </div>
+      <div class="tempJawab">
+        <div class="tempjawabanL">
+            <div class="leftjawaban"></div>
+            <div class="jawabantempOKR">
+              <div class="jawabanN salah" onclick="jawabanSalah(this)">Brazil</div>
+          </div>
+        </div>
+        <div class="tempjawabanR">
+            <div class="rightjawaban"></div>
+            <div class="jawabantempOKL">
+                <div class="jawabanN" onclick="jawabanSalah(this)">Prancis</div>
+            </div>
+        </div>
+        <div class="tempjawabanL">
+            <div class="leftjawaban"></div>
+            <div class="jawabantempOKR">
+                <div class="jawabanN salah" onclick="jawabanSalah(this)">Argentina</div> 
+            </div>
+        </div>
+        <div class="tempjawabanR">
+            <div class="rightjawaban"></div>
+            <div class="jawabantempOKL">
+                <div class="jawabanN benar" onclick="jawabanBenar(this)">Uruguay</div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="active">
+      <div class="top">
+          <button class = "fifty" onclick="fifty()">50:50</button>
+          <button class = "claim" onclick="claim()">claim</button>
+      </div>
+      <div class="grandprize">
+      <p class="textprize sepuluh">$1.000.000</p>
+      <p class="textprize sembilan">$500.000</p>
+      <p class="textprize delapan">$250.000</p>
+      <p class="textprize tujuh">$125.000</p>
+      <p class="textprize enam">$50.000</p>
+      <p class="textprize lima">$25.000</p>
+      <p class="textprize empat">$10.000</p>
+      <p class="textprize tiga">$5.000</p>
+      <p class="textprize dua">$2.000</p>
+      <p class="textprize satu">$1.000</p>
+    </div>
+    <div class="timelimit">
+      30
+    </div>
+    
+    <div>
+      <div class="pertanyaan">Berikut ini adalah pelopor berdirinya ASEAN yang berasal dari negara Filipina, yaitu
+      </div>
+      <div class="tempJawab">
+        <div class="tempjawabanL">
+            <div class="leftjawaban"></div>
+            <div class="jawabantempOKR">
+              <div class="jawabanN salah" onclick="jawabanSalah(this)">Thanat khoman</div>
+          </div>
+        </div>
+        <div class="tempjawabanR">
+            <div class="rightjawaban"></div>
+            <div class="jawabantempOKL">
+                <div class="jawabanN" onclick="jawabanSalah(this)">Tun Abdul Razak</div>
+            </div>
+        </div>
+        <div class="tempjawabanL">
+            <div class="leftjawaban"></div>
+            <div class="jawabantempOKR">
+                <div class="jawabanN salah" onclick="jawabanSalah(this)">S.Rajaratnam</div> 
+            </div>
+        </div>
+        <div class="tempjawabanR">
+            <div class="rightjawaban"></div>
+            <div class="jawabantempOKL">
+                <div class="jawabanN benar" onclick="jawabanBenar(this)">Narciso ramos</div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="active">
+      <div class="top">
+          <button class = "fifty" onclick="fifty()">50:50</button>
+          <button class = "claim" onclick="claim()">claim</button>
+      </div>
+      <div class="grandprize">
+      <p class="textprize sepuluh">$1.000.000</p>
+      <p class="textprize sembilan">$500.000</p>
+      <p class="textprize delapan">$250.000</p>
+      <p class="textprize tujuh">$125.000</p>
+      <p class="textprize enam">$50.000</p>
+      <p class="textprize lima">$25.000</p>
+      <p class="textprize empat">$10.000</p>
+      <p class="textprize tiga">$5.000</p>
+      <p class="textprize dua">$2.000</p>
+      <p class="textprize satu">$1.000</p>
+    </div>
+    <div class="timelimit">
+      30
+    </div>
+    
+    <div>
+      <div class="pertanyaan">Kereta api ditemukan oleh..
+      </div>
+      <div class="tempJawab">
+        <div class="tempjawabanL">
+            <div class="leftjawaban"></div>
+            <div class="jawabantempOKR">
+              <div class="jawabanN salah" onclick="jawabanSalah(this)">Robert Fulton</div>
+          </div>
+        </div>
+        <div class="tempjawabanR">
+            <div class="rightjawaban"></div>
+            <div class="jawabantempOKL">
+                <div class="jawabanN benar" onclick="jawabanBenar(this)">Murdocks</div>
+            </div>
+        </div>
+        <div class="tempjawabanL">
+            <div class="leftjawaban"></div>
+            <div class="jawabantempOKR">
+                <div class="jawabanN" onclick="jawabanSalah(this)">Nikola Tesla</div> 
+            </div>
+        </div>
+        <div class="tempjawabanR">
+            <div class="rightjawaban"></div>
+            <div class="jawabantempOKL">
+                <div class="jawabanN salah" onclick="jawabanSalah(this)">Civrac</div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="active">
+      <div class="top">
+          <button class = "fifty" onclick="fifty()">50:50</button>
+          <button class = "claim" onclick="claim()">claim</button>
+      </div>
+        <div class="grandprize">
+      <p class="textprize sepuluh">$1.000.000</p>
+      <p class="textprize sembilan">$500.000</p>
+      <p class="textprize delapan">$250.000</p>
+      <p class="textprize tujuh">$125.000</p>
+      <p class="textprize enam">$50.000</p>
+      <p class="textprize lima">$25.000</p>
+      <p class="textprize empat">$10.000</p>
+      <p class="textprize tiga">$5.000</p>
+      <p class="textprize dua">$2.000</p>
+      <p class="textprize satu">$1.000</p>
+    </div>
+    <div class="timelimit">
+      30
+    </div>
+    
+    <div>
+      <div class="pertanyaan">Suku bugis berada di provinsi..
+      </div>
+      <div class="tempJawab">
+        <div class="tempjawabanL">
+            <div class="leftjawaban"></div>
+            <div class="jawabantempOKR">
+              <div class="jawabanN" onclick="jawabanSalah(this)">NTT</div>
+          </div>
+        </div>
+        <div class="tempjawabanR">
+            <div class="rightjawaban"></div>
+            <div class="jawabantempOKL">
+                <div class="jawabanN benar" onclick="jawabanBenar(this)">Sulawesi Selatan</div>
+            </div>
+        </div>
+        <div class="tempjawabanL">
+            <div class="leftjawaban"></div>
+            <div class="jawabantempOKR">
+                <div class="jawabanN salah" onclick="jawabanSalah(this)">Kalimantan Timur</div> 
+            </div>
+        </div>
+        <div class="tempjawabanR">
+            <div class="rightjawaban"></div>
+            <div class="jawabantempOKL">
+                <div class="jawabanN salah" onclick="jawabanSalah(this)">Maluku</div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="active" >
+      <div class="top">
+          <button class = "fifty" onclick="fifty()">50:50</button>
+          <button class = "claim" onclick="claim()">claim</button>
+      </div>
+      <div class="grandprize">
+      <p class="textprize sepuluh">$1.000.000</p>
+      <p class="textprize sembilan">$500.000</p>
+      <p class="textprize delapan">$250.000</p>
+      <p class="textprize tujuh">$125.000</p>
+      <p class="textprize enam">$50.000</p>
+      <p class="textprize lima">$25.000</p>
+      <p class="textprize empat">$10.000</p>
+      <p class="textprize tiga">$5.000</p>
+      <p class="textprize dua">$2.000</p>
+      <p class="textprize satu">$1.000</p>
+    </div>
+    <div class="timelimit">
+      30
+    </div>
+    
+    <div>
+      <div class="pertanyaan">Benua kuning adalah sebutan bagi benua..
+      </div>
+      <div class="tempJawab">
+        <div class="tempjawabanL">
+            <div class="leftjawaban"></div>
+            <div class="jawabantempOKR">
+              <div class="jawabanN salah" onclick="jawabanSalah(this)">Amerika</div>
+          </div>
+        </div>
+        <div class="tempjawabanR">
+            <div class="rightjawaban"></div>
+            <div class="jawabantempOKL">
+                <div class="jawabanN salah" onclick="jawabanSalah(this)">Australia</div>
+            </div>
+        </div>
+        <div class="tempjawabanL">
+            <div class="leftjawaban"></div>
+            <div class="jawabantempOKR">
+                <div class="jawabanN benar" onclick="jawabanBenar(this)">Asia</div> 
+            </div>
+        </div>
+        <div class="tempjawabanR">
+            <div class="rightjawaban"></div>
+            <div class="jawabantempOKL">
+                <div class="jawabanN" onclick="jawabanSalah(this)">Eropa</div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="active" >
+      <div class="top">
+          <button class = "fifty" onclick="fifty()">50:50</button>
+          <button class = "claim" onclick="claim()">claim</button>
+      </div>
+      <div class="grandprize">
+      <p class="textprize sepuluh">$1.000.000</p>
+      <p class="textprize sembilan">$500.000</p>
+      <p class="textprize delapan">$250.000</p>
+      <p class="textprize tujuh">$125.000</p>
+      <p class="textprize enam">$50.000</p>
+      <p class="textprize lima">$25.000</p>
+      <p class="textprize empat">$10.000</p>
+      <p class="textprize tiga">$5.000</p>
+      <p class="textprize dua">$2.000</p>
+      <p class="textprize satu">$1.000</p>
+    </div>
+    <div class="timelimit">
+      30
+    </div>
+    
+    <div>
+      <div class="pertanyaan">Benua biru adalah sebutan bagi benua..
+      </div>
+      <div class="tempJawab">
+        <div class="tempjawabanL">
+            <div class="leftjawaban"></div>
+            <div class="jawabantempOKR">
+              <div class="jawabanN" onclick="jawabanSalah(this)">Amerika</div>
+          </div>
+        </div>
+        <div class="tempjawabanR">
+            <div class="rightjawaban"></div>
+            <div class="jawabantempOKL">
+                <div class="jawabanN salah" onclick="jawabanSalah(this)">Australia</div>
+            </div>
+        </div>
+        <div class="tempjawabanL">
+            <div class="leftjawaban"></div>
+            <div class="jawabantempOKR">
+                <div class="jawabanN salah" onclick="jawabanSalah(this)">Asia</div> 
+            </div>
+        </div>
+        <div class="tempjawabanR">
+            <div class="rightjawaban"></div>
+            <div class="jawabantempOKL">
+                <div class="jawabanN benar" onclick="jawabanBenar(this)">Eropa</div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="active" >
+      <div class="top">
+          <button class = "fifty" onclick="fifty()">50:50</button>
+          <button class = "claim" onclick="claim()">claim</button>
+      </div>
+      <div class="grandprize">
+      <p class="textprize sepuluh">$1.000.000</p>
+      <p class="textprize sembilan">$500.000</p>
+      <p class="textprize delapan">$250.000</p>
+      <p class="textprize tujuh">$125.000</p>
+      <p class="textprize enam">$50.000</p>
+      <p class="textprize lima">$25.000</p>
+      <p class="textprize empat">$10.000</p>
+      <p class="textprize tiga">$5.000</p>
+      <p class="textprize dua">$2.000</p>
+      <p class="textprize satu">$1.000</p>
+    </div>
+    <div class="timelimit">
+      30
+    </div>
+    
+    <div>
+      <div class="pertanyaan">Taman hutan raya ir.juanda terletak di provinsi..
+      </div>
+      <div class="tempJawab">
+        <div class="tempjawabanL">
+            <div class="leftjawaban"></div>
+            <div class="jawabantempOKR">
+              <div class="jawabanN salah" onclick="jawabanSalah(this)">DKI Jakarta</div>
+          </div>
+        </div>
+        <div class="tempjawabanR">
+            <div class="rightjawaban"></div>
+            <div class="jawabantempOKL">
+                <div class="jawabanN" onclick="jawabanSalah(this)">Jawa timur</div>
+            </div>
+        </div>
+        <div class="tempjawabanL">
+            <div class="leftjawaban"></div>
+            <div class="jawabantempOKR">
+                <div class="jawabanN salah" onclick="jawabanSalah(this)">Jawa tengah</div> 
+            </div>
+        </div>
+        <div class="tempjawabanR">
+            <div class="rightjawaban"></div>
+            <div class="jawabantempOKL">
+                <div class="jawabanN benar" onclick="jawabanBenar(this)">Jawa Barat</div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="active" >
+    <div class="top">
+        <button class = "fifty" onclick="fifty()">50:50</button>
+        <button class = "claim" onclick="claim()">claim</button>
+    </div>
+    <div class="grandprize">
+    <p class="textprize sepuluh">$1.000.000</p>
+    <p class="textprize sembilan">$500.000</p>
+    <p class="textprize delapan">$250.000</p>
+    <p class="textprize tujuh">$125.000</p>
+    <p class="textprize enam">$50.000</p>
+    <p class="textprize lima">$25.000</p>
+    <p class="textprize empat">$10.000</p>
+    <p class="textprize tiga">$5.000</p>
+    <p class="textprize dua">$2.000</p>
+    <p class="textprize satu">$1.000</p>
+  </div>
+  <div class="timelimit">
+    30
+  </div>
+  
+  <div>
+    <div class="pertanyaan">Menteri pendidikan di indonesia saat ini..
+    </div>
+    <div class="tempJawab">
+      <div class="tempjawabanL">
+          <div class="leftjawaban"></div>
+          <div class="jawabantempOKR">
+            <div class="jawabanN salah" onclick="jawabanSalah(this)">Prabowo</div>
+        </div>
+      </div>
+      <div class="tempjawabanR">
+          <div class="rightjawaban"></div>
+          <div class="jawabantempOKL">
+              <div class="jawabanN" onclick="jawabanSalah(this)">Jokowi</div>
+          </div>
+      </div>
+      <div class="tempjawabanL">
+          <div class="leftjawaban"></div>
+          <div class="jawabantempOKR">
+              <div class="jawabanN salah" onclick="jawabanSalah(this)">Ahok</div> 
+          </div>
+      </div>
+      <div class="tempjawabanR">
+          <div class="rightjawaban"></div>
+          <div class="jawabantempOKL">
+              <div class="jawabanN benar" onclick="jawabanBenar(this)">Nadiem Makarim</div>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <script>
+    var timer
+
+    function EndGame(){
+      document.getElementById("EndMsg").innerHTML = "Player "+namaPemain+" mendapatkan hadiah "+uang
+      document.getElementById("EndMsg").style.textAlign = "center"
+      stopTimer()
+      location.href = "#2"
+    }
+
+    function claim(){
+      uang = rew[0].innerHTML
+      EndGame()
+    }
+
+    //untuk mereset tampilan timernya
+    function resetTimer(){
+      var timelimit = document.getElementsByClassName("timelimit")
+      for(var i=0; i<timelimit.length; i++){
+          timelimit[i].innerHTML = "30"
+        }
+    }
+
+    //Memulai menghitung mundur timer dari 30
+    function startTimer(){
+      resetTimer()
+      var timelimit = document.getElementsByClassName("timelimit")
+      timer = setInterval(() => {
+        for(var i=0; i<timelimit.length; i++){
+          time = timelimit[i].innerHTML
+          time--
+          if(time<0){
+            timelimit[i].innerHTML = "0"
+          }
+          else{
+          timelimit[i].innerHTML = time 
+          }
+            
+        }
+      if(time <0){
+          EndGame()//ini sementara untuk pengganti game over
+        }
+      }, 1000);        
+    }
+
+    //supaya timernya berhenti ditempat
+    function stopTimer(){
+      clearInterval(timer)
+    }  
+      var clicked = 0
+      function resetJawaban(){
+        var opsi = document.getElementsByClassName("jawabanN")
+        for (var i = 0; i<opsi.length; i++){
+          opsi[i].style.visibility = "visible"
+          opsi[i].style.background = "url('images/jawabanNentral.png')"        
+        }
+        clicked = 0;
+      }
+      function resetReward(){
+        var awal = document.getElementsByClassName("textprize")
+        for (var i = 0; i<awal.length; i++){
+          awal[i].style.background = "none"
+        }
+        reward = 0;
+      }
+      var lokasi = 3;
+      var sudah = []
+      function nextQuestion(){
+          resetJawaban()
+          var cek = 0
+          
+          
+          if(reward == 10){
+            EndGame()
+          }
+          else{
+            var salah = 1
+            var pertanyaan = document.getElementsByClassName("pertanyaan")
+            while(salah == 1){
+              salah = 0
+              var random = (Math.floor(Math.random()*10)%pertanyaan.length)+3
+              for (var i = 0; i<sudah.length; i++){
+                if(sudah[i]==random){
+                  salah = 1
+                }
+              }
+            }
+            sudah.push(random)
+            location.href = "#"+random
+            startTimer()
+          }
+      }
+      function jawabanBenar(jawaban){
+        if(clicked == 0){
+          clicked = 1
+          document.getElementById("wow").play()
+          stopTimer()
+          jawaban.style.background = "url('images/jawabanTrue.png')"
+          increaseReward()
+          setTimeout(() => {
+            nextQuestion()
+          }, 3000);
+        }
+      }
+        
+      function jawabanSalah(jawaban){
+        if(clicked == 0){
+          clicked = 1
+          document.getElementById("alert").play()
+          stopTimer()
+          jawaban.style.background = "url('images/jawabanFalse.png')"
+          var benar = document.getElementsByClassName("benar")
+          for(var i = 0; i<benar.length; i++){
+            benar[i].style.background = "url('images/jawabanTrue.png')"
+          }
+          setTimeout(() => {
+            EndGame()
+          }, 3000);
+        }
+          
+      }
+      function fifty(){
+        var wrong = document.getElementsByClassName("salah")
+        for (var i = 0; i<wrong.length; i++){
+          wrong[i].style.visibility = "hidden"
+        }
+        var fifty = document.getElementsByClassName("fifty")
+        for (var i = 0; i<fifty.length; i++){
+          fifty[i].style.visibility = "hidden"
+        }
+      }
+      var uang = "$0";
+      var reward = 0
+      var rew
+      function increaseReward(){
+        reward++
+        if(reward == 1){
+          rew= document.getElementsByClassName('satu')
+          for(var i = 0; i<rew.length; i++){
+            rew[i].style.background = "#00FF00"
+          }
+        }
+        else if(reward == 2){
+          rew= document.getElementsByClassName('dua')
+          for(var i = 0; i<rew.length; i++){
+            rew[i].style.background = "#00FF00"
+          }
+
+        }
+        else if(reward == 3){
+          rew= document.getElementsByClassName('tiga')
+          for(var i = 0; i<rew.length; i++){
+            rew[i].style.background = "#00FF00"
+          }
+        }
+        else if(reward == 4){
+          rew= document.getElementsByClassName('empat')
+          for(var i = 0; i<rew.length; i++){
+            rew[i].style.background = "#00FF00"
+          }
+        }
+        else if(reward == 5){
+          rew = document.getElementsByClassName('lima')
+          for(var i = 0; i<rew.length; i++){
+            rew[i].style.background = "#00FF00"
+          }
+          uang = rew[0].innerHTML
+        }
+        else if(reward == 6){
+          rew= document.getElementsByClassName('enam')
+          for(var i = 0; i<rew.length; i++){
+            rew[i].style.background = "#00FF00"
+          }
+        }
+        else if(reward == 7){
+          rew= document.getElementsByClassName('tujuh')
+          for(var i = 0; i<rew.length; i++){
+            rew[i].style.background = "#00FF00"
+          }
+        }
+        else if(reward == 8){
+          rew= document.getElementsByClassName('delapan')
+          for(var i = 0; i<rew.length; i++){
+            rew[i].style.background = "#00FF00"
+          }
+        }
+        else if(reward == 9){
+          rew= document.getElementsByClassName('sembilan')
+          for(var i = 0; i<rew.length; i++){
+            rew[i].style.background = "#00FF00"
+          }
+        }
+        else if(reward == 10){
+          rew= document.getElementsByClassName('sepuluh')
+          for(var i = 0; i<rew.length; i++){
+            rew[i].style.background = "#00FF00"
+          }
+          uang = rew[i].innerHTML
+        }
+        
+      }
+
+  </script>
+</article>
+
+<script src="build/build.js"></script>
+
+</body>
+</html>
