@@ -14,28 +14,55 @@
 <audio id="wow" src="/images/wow.mp3"></audio>
 <article class="deck">
   <section id="slide1" class="active">
+    <div id="theman"></div>
     <imagebutton id="start" onclick="StartGame()"></imagebutton>
     <input id="Nama" placeholder="Player Name">
     <button id="startNow" onclick="StartGameNow()">Start Now</button>
+    <div id="backgroundplayer" width="248px" height="141px"><img src="images/backgroundnameplayer.jpg"></div>
     <script>
       var namaPemain
+      document.getElementById("theman").style.position='absolute'
+      document.getElementById("theman").style.bottom='0px'
+      document.getElementById("theman").style.right='108px'
+      document.getElementById("theman").style.transition='500ms ease-out'
+      document.getElementById("backgroundplayer").style.zIndex='-1'
+      document.getElementById("backgroundplayer").style.position='absolute'
+      document.getElementById("backgroundplayer").style.top='-142px'
+      document.getElementById("Nama").style.width='0px'
+      document.getElementById("startNow").style.width='0px'
       function playTheme(){
         document.getElementById("maintheme2").play()
       }
       function StartGame(){
         document.getElementById("start").style.visibility='hidden'
         document.getElementById("start").style.display='none'
-        document.getElementById("Nama").style.visibility='visible'
-        document.getElementById("startNow").style.visibility='visible'
+        document.getElementById("Nama").style.width='200px'
+        document.getElementById("Nama").style.opacity='1'
+        document.getElementById("startNow").style.width='200px'
+        document.getElementById("startNow").style.opacity='1'
+        document.getElementById("theman").style.right='-70px'
+        document.getElementById("start").style.visibility='hidden'
+        document.getElementById("start").style.display='none'
+        document.getElementById("Nama").style.transition='300ms ease-out'
+        document.getElementById("Nama").style.transitionDelay='600ms'
+        document.getElementById("startNow").style.transition='300ms ease-out'
+        document.getElementById("startNow").style.transitionDelay='600ms'
+        document.getElementById("backgroundplayer").style.top='170px'
+        document.getElementById("backgroundplayer").style.transition='600ms cubic-bezier(0.175, 0.885, 0.32, 1.275)'
         playTheme()
       }
       function StartGameNow(){
         document.getElementById("quiz").play()
         namaPemain = document.getElementById("Nama").value //menyimpan nama yang dimasukkan pemain
+        document.getElementById("backgroundplayer").style.zIndex='-2'
         document.getElementById("start").style.visibility='visible'
         document.getElementById("start").style.display='block'
         document.getElementById("Nama").style.visibility='hidden'
         document.getElementById("startNow").style.visibility='hidden'
+        document.getElementById("theman").style.right='108px'
+        document.getElementById("backgroundplayer").style.top='-142px'
+        document.getElementById("Nama").style.width='0px'
+        document.getElementById("Nama").style.opacity='0'
         rew = 0;
         var fifty = document.getElementsByClassName("fifty")
         for (var i = 0; i<fifty.length; i++){

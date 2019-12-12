@@ -10,14 +10,43 @@
 section{
     background :  url('/images/background.jpeg');
     background-repeat : no-repeat;
+    background-size : cover;
 }
-
+#start{
+    position absolute
+    bottom 30px
+    width 160px
+    height 19px
+    animation-duration 3s
+    animation-iteration-count infinite
+    animation-name startanimation
+    background url('/images/icstartgame1.png')
+}
+@keyframes startanimation{
+    0%{
+        opacity 1
+    }
+    50%{
+        opacity 0.3
+    }
+    100%{
+        opacity 1
+    }
+}
+#theman{
+    width 404px
+    height 282px
+    z-index -1
+    background url('/images/theman.png')
+    background-repeat no-repeat
+}
 #Nama{
     width 200px
     height auto
     padding 3px
+    opacity 0
     text-align center
-    visibility hidden
+    z-index 1
 }
 #startNow{
     margin-top 10px
@@ -25,11 +54,12 @@ section{
     height auto
     padding 5px
     text-align center
-    visibility hidden
     font-weight bold
     background #0000CD
     border 0px solid black
     color #FFF
+    opacity 0
+    z-index 1
 }
 #startNow:hover{
     background #FFF
@@ -126,17 +156,7 @@ section{
     height 44px
     background :  url('/images/jawabanFalse.png');
 }
-#start{
-    width 288px
-    height 66px
-    background url('/images/icstartgame.png')
-}
-#start:hover{
-    width 304px
-    height 80px
-    background url('/images/icstartgamehover.png')
-    transition 100ms all
-}
+
 
 .fifty{
     margin-top 10px
@@ -207,7 +227,7 @@ section{
     color #FFF
 }
 #kalah:hover{
-    background #FFFx
+    background #FFF
     color #0000cd
     transition 0.3s all
 }
